@@ -11,6 +11,7 @@
   <img src="https://img.shields.io/github/issues-pr/phaazon/hop.nvim?color=green&style=for-the-badge"/>
   <img src="https://img.shields.io/github/contributors-anon/phaazon/hop.nvim?color=blue&style=for-the-badge"/>
   <img src="https://img.shields.io/github/last-commit/phaazon/hop.nvim?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/v/tag/phaazon/hop.nvim?color=pink&label=release&style=for-the-badge"/>
 </p>
 
 <p align="center">
@@ -121,7 +122,7 @@ Plug 'phaazon/hop.nvim'
 ```lua
 use {
   'phaazon/hop.nvim',
-  branch = 'v1', -- optional but strongly recommended
+  branch = 'v2', -- optional but strongly recommended
   config = function()
     -- you can configure Hop the way you like here; see :h hop-config
     require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
