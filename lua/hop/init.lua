@@ -194,7 +194,9 @@ local function get_input_pattern(prompt, maxchar, opts)
 
   local K_Esc = vim.api.nvim_replace_termcodes('<Esc>', true, false, true)
   local K_BS = vim.api.nvim_replace_termcodes('<BS>', true, false, true)
+  local K_C_H = vim.api.nvim_replace_termcodes('<C-H>', true, false, true)
   local K_CR = vim.api.nvim_replace_termcodes('<CR>', true, false, true)
+  local K_NL = vim.api.nvim_replace_termcodes('<NL>', true, false, true)
   local pat_keys = {}
   local pat = ''
 
@@ -216,7 +218,10 @@ local function get_input_pattern(prompt, maxchar, opts)
     vim.api.nvim_echo({{prompt, 'Question'}, {pat}}, false, {})
 
     local ok, key = pcall(vim.fn.getchar)
-    if not ok then break end -- Interrupted by <C-c>
+    if not ok then -- Interrupted by <C-c>
+      pat = nil
+      break
+    end
 
     if type(key) == 'number' then
       key = vim.fn.nr2char(key)
@@ -227,9 +232,9 @@ local function get_input_pattern(prompt, maxchar, opts)
     if key == K_Esc then
       pat = nil
       break
-    elseif key == K_CR then
+    elseif key == K_CR or key == K_NL then
       break
-    elseif key == K_BS then
+    elseif key == K_BS or key == K_C_H then
       pat_keys[#pat_keys] = nil
     else
       pat_keys[#pat_keys + 1] = key
